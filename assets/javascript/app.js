@@ -106,8 +106,7 @@ database.ref("/turn").on("value", function(turnSnap){
     if (turnSnap.val() === 1) {
         
         if (playerOne && playerTwo){
-            $(".playerOneTurn").text("It's Your Turn!");
-            $("#playerOne").css({"border": "5px solid yellow"});
+            $(".playerOneTurn").text("It's Your Turn!");            
             $(".playerTwoTurn").text("Waiting for " + playerOneName + " to choose.");
            
             if (player === 1) {
@@ -120,8 +119,6 @@ database.ref("/turn").on("value", function(turnSnap){
     if (turnSnap.val() === 2) {
         
         if (playerOne && playerTwo){
-            $("#playerOne").css({"border": "5px solid #007bff"});
-            $("#playerTwo").css({"border": "5px solid yellow"});
             $(".playerTwoTurn").text("It's Your Turn!");
             $(".playerOneTurn").text("Waiting for " + playerTwoName + " to choose.");
             if (player === 2) {
@@ -132,8 +129,7 @@ database.ref("/turn").on("value", function(turnSnap){
         };
     };
     if (turnSnap.val() === 3) {
-        
-        $("#playerTwo").css({"border": "5px solid #007bff"});
+                
         $("#playerOne").append("<p class='" + playerOneChoice + "'>" + playerOneChoice);
         $("#playerTwo").append("<p class='" + playerTwoChoice + "'>" + playerTwoChoice);
         if ((playerOneChoice === "Rock") || (playerOneChoice === "Paper") || (playerOneChoice === "Scissors")) {

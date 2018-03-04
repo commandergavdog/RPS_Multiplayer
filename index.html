@@ -1,54 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Rock Paper Scissors</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-</head>
-<body>
-    <div class="jumbotron jumbotron-fluid bg-info">
-        <div class="container text-center">
-          <h1 class="display-4">Rock Paper Scissors</h1>          
-        </div>
-    </div>
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="assets/css/poop.css">
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body class="bg-light">
+<!--HEADER-->    
+    <header class="center-block text-center bg-dark">
+            <img class="my-3" src="assets/images/header.png" height="100px" width="350px" >            
+    </header>
+<!--NAME-->
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-8 col-lg-5 col-xl-4 mx-auto text-center" id="startHeader">
-                <form class="form-inline">
-                    <label class="sr-only" for="playerName">Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="playerName" placeholder="Name">
-                    <button type="submit" class="btn btn-primary mb-2 mx-auto mx-sm-0" id="startButton">Start</button>
-                </form>
+        <section class="row">
+            <div class="mx-auto my-3 text-center" id="startHeader">
+                <form class="form-inline">                
+                    <label for="playerName" class="sr-only" for="playerName">Your name</label>
+                    <input id="playerName" placeholder="Name" class="form-control" type="text">                
+                    <button class="btn btn-info" type="submit" id="startButton">Start</button>
+                </form>            
             </div>
-        </div>
+        </section>
+    </div>
+<!--BATTLE AREA-->
+    <main>
         <div class="row justify-content-around text-center">
-            <div class="col-12 col-lg-3 mt-5" id="playerOne">
+            <!--PLAYER 1-->
+            <div class="col-lg-4 col-sm-6 card bg-info box" id="playerOne">
                 <p id="playerOneStatus">Waiting for Player 1</p>
-                <p id="playerOneScore"></p>
+                <p id="playerOneScore"></p>                    
             </div>
-            <div class="col-12 col-lg-3 mt-5" id="gameResults"></div>
-            <div class="col-12 col-lg-3 mt-5" id="playerTwo">
-                <p id="playerTwoStatus">Waiting for Player 2</p>
-                <p id="playerTwoScore"></p>
+
+            <!--Middle Div-->
+            <div class="card bg-info col-lg-4 col-sm-6 box" id="gameResults"></div>
+
+            <!--PLAYER 2-->
+            <div class="card bg-info col-lg-4 col-sm-6 box" id="playerTwo">
+                    <p id="playerTwoStatus">Waiting for Player 2</p>
+                    <p id="playerTwoScore"></p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-sm-8 mx-auto mt-5">
-                <div class="chatbox"></div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control ml-0 chatMessage">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="chatSend">Send</button>
-                    </div>
+
+<!--CHAT-->        
+    <div class="row text-center">
+        <div class="text-center mx-auto">
+            <div class="col-xs-12">
+                <div class="chatbox">
+                    <div class="messages"></div>
                 </div>
+                <form class="chat-form">
+                    <div class="input-group">
+                        <label for="message" class="sr-only">Message:</label>
+                        <input id="message" placeholder="Type a message..." class="form-control chatMessage" type="text">
+                        <span class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="chatSend">Send</button>
+                        </span>
+                    </div>                   
+                 </form>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </main>
+    
+    
+<!--Scripts-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 </html>
