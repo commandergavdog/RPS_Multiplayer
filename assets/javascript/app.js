@@ -33,8 +33,8 @@ $("#startButton").on("click", function() {
                 loss: 0,
             });
             $(".form-inline").detach();
-            $("#startHeader").html("<p>Hi " + playerOneName + "! You are Player 1")
-            $("#startHeader").append("<p class='playerOneTurn'>")
+            $("#startHeader").html("<p class='font-weight-bold '>" + playerOneName + "! You are Player 1")
+            $("#startHeader").append("<p class='playerOneTurn font-weight-bold '>")
             database.ref("/players/p1").onDisconnect().remove();
             database.ref().child("/turn").set(1);
         
@@ -48,8 +48,8 @@ $("#startButton").on("click", function() {
                 loss: 0,
             });
             $(".form-inline").detach();
-            $("#startHeader").html("<p>Hi " + playerTwoName + "! You are Player 2")
-            $("#startHeader").append("<p class='playerTwoTurn'> Waiting for " + playerOneName + " to choose.")
+            $("#startHeader").html("<p class='font-weight-bold'>" + playerTwoName + "! You are Player 2")
+            $("#startHeader").append("<p class='playerTwoTurn font-weight-bold'> Waiting for " + playerOneName + " to choose.")
             database.ref("/players/p2").onDisconnect().remove();
             database.ref().child("/turn").set(1);
         };
@@ -65,12 +65,12 @@ database.ref("/players").on("value", function(playerSnap){
         playerOneChoice = p1.choice;
         playerOneWins = p1.win;
         playerOneLoss = p1.loss;
-        $("#playerOneStatus").html("<p>" + p1.name);
+        $("#playerOneStatus").html("<p class='font-weight-bold'>" + p1.name);
         $("#playerOneScore").text("Wins: " + p1.win + " Losses: " + p1.loss);
     
     } else {
         playerOne = false;
-        $("#playerOneStatus").html("<p> Waiting for Player 1");
+        $("#playerOneStatus").html("<p class='font-weight-bold'> Waiting for Player 1");
         database.ref().child("/turn").set(0);
     };
     
@@ -81,12 +81,12 @@ database.ref("/players").on("value", function(playerSnap){
         playerTwoChoice = p2.choice;
         playerTwoWins = p2.win;
         playerTwoLoss = p2.loss;
-        $("#playerTwoStatus").html("<p>" + p2.name);
+        $("#playerTwoStatus").html("<p class='font-weight-bold'>" + p2.name);
         $("#playerTwoScore").text("Wins: " + p2.win + " Losses: " + p2.loss);
     
     } else {
         playerTwo = false;
-        $("#playerTwoStatus").html("<p> Waiting for Player 2");
+        $("#playerTwoStatus").html("<p class='font-weight-bold'> Waiting for Player 2");
         database.ref().child("/turn").set(0);
     };
     
@@ -110,9 +110,9 @@ database.ref("/turn").on("value", function(turnSnap){
             $(".playerTwoTurn").text("Waiting for " + playerOneName + " to choose.");
            
             if (player === 1) {
-                $("#playerOne").append("<p class='playerChoices1' data-choice='Rock'> Rock");
-                $("#playerOne").append("<p class='playerChoices1' data-choice='Paper'> Paper");
-                $("#playerOne").append("<p class='playerChoices1' data-choice='Scissors'> Scissors");
+                $("#playerOne").append("<p class='playerChoices1' data-choice='Rock'><i class='fas fa-hand-rock fa-3x'></i>");
+                $("#playerOne").append("<p class='playerChoices1' data-choice='Paper'><i class='fas fa-hand-paper fa-3x'></i>");
+                $("#playerOne").append("<p class='playerChoices1' data-choice='Scissors'> <i class='fas fa-hand-scissors fa-3x'></i>");
             };
         };
     };
@@ -122,16 +122,16 @@ database.ref("/turn").on("value", function(turnSnap){
             $(".playerTwoTurn").text("It's Your Turn!");
             $(".playerOneTurn").text("Waiting for " + playerTwoName + " to choose.");
             if (player === 2) {
-                $("#playerTwo").append("<p class='playerChoices2' data-choice='Rock'> Rock");
-                $("#playerTwo").append("<p class='playerChoices2' data-choice='Paper'> Paper");
-                $("#playerTwo").append("<p class='playerChoices2' data-choice='Scissors'> Scissors");
+                $("#playerTwo").append("<p class='playerChoices2' data-choice='Rock'><i class='fas fa-hand-rock fa-3x'></i>");
+                $("#playerTwo").append("<p class='playerChoices2' data-choice='Paper'><i class='fas fa-hand-paper fa-3x'></i>");
+                $("#playerTwo").append("<p class='playerChoices2' data-choice='Scissors'> <i class='fas fa-hand-scissors fa-3x'></i>");
             };
         };
     };
     if (turnSnap.val() === 3) {
                 
-        $("#playerOne").append("<p class='" + playerOneChoice + "'>" + playerOneChoice);
-        $("#playerTwo").append("<p class='" + playerTwoChoice + "'>" + playerTwoChoice);
+        $("#playerOne").append("<p class='font-weight-bold " + playerOneChoice + "'>"+"Oppenent chose: " + playerTwoChoice);
+        $("#playerTwo").append("<p class='font-weight-bold " + playerTwoChoice + "'>"+"Oppenent chose: " + playerOneChoice);
         if ((playerOneChoice === "Rock") || (playerOneChoice === "Paper") || (playerOneChoice === "Scissors")) {
             if ((playerOneChoice === "Rock") && (playerTwoChoice === "Scissors")) {
                 firstPlayerWins();
@@ -158,7 +158,7 @@ $(document).on('click', ".playerChoices1", function() {
     console.log(playerChoice);
     database.ref().child("/players/p1/choice").set(playerChoice);
     $(".playerChoices1").detach()
-    $("#playerOne").append("<p class='firstPlayerChoice " + playerChoice + "'>" + playerChoice);
+    $("#playerOne").append("<p class='firstPlayerChoice font-weight-bold " + playerChoice + "'>" + playerChoice);
     database.ref().child("/turn").set(2);
 });
 
@@ -167,7 +167,7 @@ $(document).on('click', ".playerChoices2", function() {
     console.log(playerChoice);
     database.ref().child("/players/p2/choice").set(playerChoice);
     $(".playerChoices2").detach()
-    $("#playerTwo").append("<p class='secondPlayerChoice " + playerChoice + "'>" + playerChoice);
+    $("#playerTwo").append("<p class='secondPlayerChoice font-weight-bold " + playerChoice + "'>" + playerChoice);
     database.ref().child("/turn").set(3);
 });
 
@@ -176,8 +176,8 @@ function firstPlayerWins(){
     database.ref("/players/p1/win").set(playerOneWins);
     playerTwoLoss++;
     database.ref("/players/p2/loss").set(playerTwoLoss);
-    $("#gameResults").append("<p class='gameResults'>" + playerOneName);
-    $("#gameResults").append("<p class='gameResults'> Wins!");
+    $("#gameResults").append("<p class='gameResults font-weight-bold'>" + playerOneName);
+    $("#gameResults").append("<p class='gameResults font-weight-bold'> Wins!");
     var resultsCount = 6;
     var resultsCounter = setInterval(resultsTimer, 1000); 
     function resultsTimer(){
@@ -199,8 +199,8 @@ function secondPlayerWins(){
     database.ref("/players/p2/win").set(playerTwoWins);
     playerOneLoss++;
     database.ref("/players/p1/loss").set(playerOneLoss);
-    $("#gameResults").append("<p class='gameResults'>" + playerTwoName);
-    $("#gameResults").append("<p class='gameResults'> Wins!");
+    $("#gameResults").append("<p class='gameResults font-weight-bold'>" + playerTwoName);
+    $("#gameResults").append("<p class='gameResults font-weight-bold'> Wins!");
     var resultsCount = 6;
     var resultsCounter = setInterval(resultsTimer, 1000); 
     function resultsTimer(){
@@ -218,8 +218,8 @@ function secondPlayerWins(){
 };
 
 function tieGame(){
-    $("#gameResults").append("<p class='gameResults'> Tie");
-    $("#gameResults").append("<p class='gameResults'> Game!");
+    $("#gameResults").append("<p class='gameResults font-weight-bold'> Tie");
+    $("#gameResults").append("<p class='gameResults font-weight-bold'> Game!");
     var resultsCount = 6;
     var resultsCounter = setInterval(resultsTimer, 1000); 
     function resultsTimer(){

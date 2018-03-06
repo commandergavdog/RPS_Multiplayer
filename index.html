@@ -10,8 +10,12 @@
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" href="assets/css/poop.css">
+    <!--Font AWesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    
     <title>Rock Paper Scissors</title>
   </head>
+  
   <body class="bg-light">
 <!--HEADER-->    
     <header class="center-block text-center bg-dark">
@@ -31,11 +35,12 @@
     </div>
 <!--BATTLE AREA-->
     <main>
-        <div class="row justify-content-around text-center">
+    <div class="jumbotron">
+        <div class="row card-deck justify-content-around text-center">
             <!--PLAYER 1-->
             <div class="col-lg-4 col-sm-6 card bg-info box" id="playerOne">
-                <p id="playerOneStatus">Waiting for Player 1</p>
-                <p id="playerOneScore"></p>                    
+                <p class="font-weight-bold" id="playerOneStatus">Waiting for Player 1</p>
+                <p class="font-weight-bold" id="playerOneScore"></p>                    
             </div>
 
             <!--Middle Div-->
@@ -43,16 +48,17 @@
 
             <!--PLAYER 2-->
             <div class="card bg-info col-lg-4 col-sm-6 box" id="playerTwo">
-                    <p id="playerTwoStatus">Waiting for Player 2</p>
-                    <p id="playerTwoScore"></p>
+                    <p class="font-weight-bold" id="playerTwoStatus">Waiting for Player 2</p>
+                    <p class="font-weight-bold" id="playerTwoScore"></p>
             </div>
         </div>
+    </div>
 
 <!--CHAT-->        
     <div class="row text-center">
         <div class="text-center mx-auto">
             <div class="col-xs-12">
-                <div class="chatbox">
+                <div class="card chatbox">
                     <div class="messages"></div>
                 </div>
                 <form class="chat-form">
