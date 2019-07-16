@@ -1,3 +1,4 @@
+//Firebase config
 var config = {
     apiKey: "AIzaSyDWq53ui86CtT618CYkmQIN9TjuFyPIn5E",
     authDomain: "multiplayer-rps-3e2fc.firebaseapp.com",
@@ -8,9 +9,10 @@ var config = {
   };
   
 firebase.initializeApp(config);
-
+//initialize variables 
 var database = firebase.database();
-var chat = "";
+var chat = ""
+//Set to false so player may be set
 var playerOne = false;
 var playerTwo = false;
 var playerOneName = "";
@@ -18,22 +20,31 @@ var playerTwoName = "";
 var player = "";
 var chatName = "";
 
+//When start button is pressed...
 $("#startButton").on("click", function() {
+    //no refresh
     event.preventDefault();
-    
+    //if playerName has text...
     if ($("#playerName").val().trim() !== "") {
-        
+        //and if playerOne = false...
         if (playerOne === false) {
+            //Set playerOneName to the text from playerName
             playerOneName = $("#playerName").val().trim();
             player = 1;
+            //Set chatName to playerOneName
             chatName = playerOneName;
+            //Initialize player one within firebase
             database.ref("/players/p1").set({
+                //name=playerOneName=#playerName
                 name: playerOneName,
                 win: 0,
                 loss: 0,
             });
+            //Remove name form
             $(".form-inline").detach();
+            //Display to the player their name and their player number
             $("#startHeader").html("<p class='font-weight-bold '>" + playerOneName + "! You are Player 1")
+            //add to
             $("#startHeader").append("<p class='playerOneTurn font-weight-bold '>")
             database.ref("/players/p1").onDisconnect().remove();
             database.ref().child("/turn").set(1);
